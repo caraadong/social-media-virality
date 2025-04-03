@@ -18,33 +18,41 @@ Ensure that you have the following dependencies installed:
 - MkDocs
 
 Install all dependencies using:
+
     pip install -r requirements.txt
 
 ## Setup Instructions
 
 Create a virtual environemnt and activate:
+
     python -m venv venv  
     source venv/bin/activate  # Mac/Linux  
     venv\Scripts\activate  # Windows  
 
 Then install required packages:
+
     pip install -r requirements.txt
 
 ## Running the Data Processing Pipeline
 
 Prepare and clean the dataset by running:
+
     python data_processing/dataset.py
+    
 This step will handle missing values, feature extraction, and transformations.
 
 ## Training and Evaluating Models
 
 To train the machine learning model run:
+
     python data_processing/modeling/train.py
 
 To make predictions using the trained model:
+
     python data_processing/modeling/predict.py
 
 To evaluate the model's performance run:
+
     python tests/test_data.py
 
 This will provide key metrics such as accuracy, precision, reacall, and F-1 score.
@@ -52,6 +60,7 @@ This will provide key metrics such as accuracy, precision, reacall, and F-1 scor
 ## Reproducing Results
 
 To ensure reproducibility, set a random seed before training:
+
     import numpy as np
     import random
     import torch  # if using PyTorch
