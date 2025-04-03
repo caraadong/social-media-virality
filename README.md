@@ -121,6 +121,10 @@ Re-run the training and evaluation scripts to reproduce the results.
     │
     └── plots.py                <- Code to create visualizations
 ```
+## Contributors 
+Cara Dong
 
+## License
+This project is licensed under the MIT License.
 --------
 
