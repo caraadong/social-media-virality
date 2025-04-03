@@ -4,7 +4,63 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-Analyzing social media engagement trends and virality across multiple platforms to predict key factors influencing viral content.
+This project examines social media interaction patterns on various platforms to determine the factors of content virality. Examining interactions such as likes, shares, comments, and views, we aim to identify the decisive attributes that make a post more likely to be virally transmitted. Using machine learning techniques, we construct predictive models to measure new content's likely virality based on historical trends and engagement patterns unique to each platform.
+
+## Dependencies
+
+Ensure that you have the following dependencies installed: 
+- Python 3.10
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- MkDocs
+
+Install all dependencies using:
+- pip install -r requirements.txt
+
+## Setup Instructions
+
+Create a virtual environemnt and activate:
+- python -m venv venv  
+- source venv/bin/activate  # Mac/Linux  
+- venv\Scripts\activate  # Windows  
+
+Then install required packages:
+- pip install -r requirements.txt
+
+## Running the Data Processing Pipeline
+
+Prepare and clean the dataset by running:
+- python data_processing/dataset.py
+This step will handle missing values, feature extraction, and transformations.
+
+## Training and Evaluating Models
+
+To train the machine learning model run:
+- python data_processing/modeling/train.py
+
+To make predictions using the trained model:
+- python data_processing/modeling/predict.py
+
+To evaluate the model's performance run:
+- python tests/test_data.py
+
+This will provide key metrics such as accuracy, precision, reacall, and F-1 score.
+
+## Reproducing Results
+
+To ensure reproducibility, set a random seed before training:
+- import numpy as np
+- import random
+- import torch  # if using PyTorch
+
+- np.random.seed(42)
+- random.seed(42)
+- torch.manual_seed(42)
+
+Re-run the training and evaluation scripts to reproduce the results.
 
 ## Project Organization
 
