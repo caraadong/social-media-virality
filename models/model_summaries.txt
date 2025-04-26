@@ -1,0 +1,16 @@
+Regression Model MSE: 20815236227.62
+Decision Tree Model Accuracy: 1.00
+
+Top Regression Coefficients:
+                Feature   Coefficient
+7     Content_Type_Reel   8038.924511
+9    Content_Type_Tweet   5825.927892
+5      Platform_YouTube   4635.653234
+6     Content_Type_Post   4323.762775
+10   Content_Type_Video   1240.890899
+1                Shares      0.074902
+0                 Views     -0.000314
+2              Comments     -0.208320
+8   Content_Type_Shorts  -2014.116714
+4      Platform_Twitter -12129.460506
+3       Platform_TikTok -17817.261498
