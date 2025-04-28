@@ -1,29 +1,31 @@
-from pathlib import Path
+import pandas as pd
 
-from loguru import logger
-from tqdm import tqdm
-import typer
+def load_raw_data(filepath):
+    """
+    Load the raw social media dataset from a CSV file.
 
-from data_processing.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
+    Args:
+        filepath (str): Path to the CSV file.
 
-app = typer.Typer()
+    Returns:
+        pd.DataFrame: Load Dataset.
+    """
+    return pd.read_csv(filepath)
 
+def preprocess_data(df):
+    """
+    Perform basic preprocessing on the dataset:
+    - create dummy variables
+    - create engagement label
 
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = RAW_DATA_DIR / "dataset.csv",
-    output_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    # ----------------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Processing dataset...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Processing dataset complete.")
-    # -----------------------------------------
+    Args:
+        df (pd.DataFrame): Raw dataset
 
+    Returns:
+        pd.DataFrame: Processed dataset
+            
+    """
+    df = pd.get_dummies(df, columns=['Platform', 'Content_Type'])
+    df['Engagement_Label'] = (df['Likes'] > df['Likes'].median()).astype(int)
+    return df
 
-if __name__ == "__main__":
-    app()
