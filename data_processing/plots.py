@@ -1,29 +1,48 @@
-from pathlib import Path
 
-from loguru import logger
-from tqdm import tqdm
-import typer
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.tree import plot_tree
+import pandas as pd
 
-from data_processing.config import FIGURES_DIR, PROCESSED_DATA_DIR
+def plot_regression_coefficients(model, feature_names, output_path=None):
+    """ 
+    Plot regression coefficients
+    Args:
+        model: trained LinearRegression model
+        feature_names: Feature names
+        output_path: optional save path
+    """
+    coef_df = pd.DataFrame({'Feature': feature_names, 'Coefficient': model.coef_})
+    plt.figure(figsize=(10,6))
+    sns.barplot(data=coef_df, x='Coefficient', y='Feature')
+    plt.title('Regression Coefficients')
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path)
+    else:
+        plt.show()
 
-app = typer.Typer()
-
-
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    output_path: Path = FIGURES_DIR / "plot.png",
-    # -----------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Generating plot from data...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Plot generation complete.")
-    # -----------------------------------------
-
-
-if __name__ == "__main__":
-    app()
+def plot_decision_tree_model(tree_model, feature_names, class_names, output_path = None):
+    """
+    Plot decision tree diagram
+    Args: 
+        tree_model: Trained DecisionTreeClassifier
+        feature_names: feature names
+        class_names: class names
+        output_path: optional save path
+    """
+    plt.figure(figsize=(12, 8))
+    plot_tree(
+        tree_model,
+        feature_names=feature_names,
+        class_names=class_names,
+        filled=True,
+        rounded=True,
+        proportion=True
+    )
+    plt.title("Decision Tree Classifier for Engagement Prediction")
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path)
+    else:
+        plt.show()
